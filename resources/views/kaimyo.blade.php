@@ -93,7 +93,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (kaimyoKanji1.length === 1 && kaimyoKanji2.length === 1) {
             localStorage.setItem('kaimyo_kanji1', kaimyoKanji1);
             localStorage.setItem('kaimyo_kanji2', kaimyoKanji2);
-            window.location.href = '/dashboard/final'; // final.blade.phpへリダイレクト
+            const basePath = (window.location.hostname === "localhost") ? '/dashboard/final' : '/sotsugyou/dashboard/final';
+            window.location.href = basePath;
         } else {
             alert('漢字は1文字ずつ入力してください。');
         }

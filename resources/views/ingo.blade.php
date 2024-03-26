@@ -106,7 +106,8 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('ingo_kanji2', kanji2);
 
             // final.blade.phpにリダイレクト
-            window.location.href = '/dashboard/final';
+            const basePath = (window.location.hostname === "localhost") ? '/dashboard/final' : '/sotsugyou/dashboard/final';
+            window.location.href = basePath;
         } else {
             // 不正な入力の場合は警告
             alert('漢字は1文字ずつ入力してください。');

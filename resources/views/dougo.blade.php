@@ -94,7 +94,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (dougoKanji1.length === 1 && dougoKanji2.length === 1) {
             localStorage.setItem('dougo_kanji1', dougoKanji1);
             localStorage.setItem('dougo_kanji2', dougoKanji2);
-            window.location.href = '/dashboard/final'; // final.blade.phpへリダイレクト
+            const basePath = (window.location.hostname === "localhost") ? '/dashboard/final' : '/sotsugyou/dashboard/final';
+            window.location.href = basePath;
         } else {
             alert('漢字は1文字ずつ入力してください。');
         }
