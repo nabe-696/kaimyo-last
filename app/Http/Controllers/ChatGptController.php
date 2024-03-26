@@ -26,7 +26,7 @@ class ChatGptController extends Controller
         $passion = $request->input('passion');
         $trial = $request->input('trial');
 
-        // それぞれの質問に対する回答から漢字を提案するロジックを実装
+        // それぞれの質問に対する回答から漢字を提案するロジック
         $kanji_suggestions = $this->generateKanjiSuggestions($value, $passion, $trial);
 
         return view('ingo', compact('value', 'passion', 'trial', 'kanji_suggestions'));
