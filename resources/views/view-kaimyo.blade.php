@@ -116,3 +116,16 @@
     </div>
 </body>
 </html>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    var imagePath = '';
+    // 環境に応じた画像パスの設定
+    if (window.location.hostname === 'localhost') {
+        imagePath = '/images/ihaidayo.png';
+    } else {
+        imagePath = '/sotsugyou/images/ihaidayo.png';
+    }
+    // 背景画像の設定
+    document.querySelector('.kanji-display').style.backgroundImage = 'url(' + imagePath + ')';
+});
+</script>
