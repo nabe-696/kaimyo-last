@@ -9,6 +9,7 @@ class ChatGptController extends Controller
 {
     public function index(Request $request)
     {
+        
         return view('ingo');
     }
 
@@ -18,36 +19,35 @@ class ChatGptController extends Controller
         $request->validate([
             'value' => 'required',
             'passion' => 'required',
-            'trial' => 'required',
+            'inheritance' => 'required',
         ]);
 
         // 入力値の取得
         $value = $request->input('value');
         $passion = $request->input('passion');
-        $trial = $request->input('trial');
+        $inheritance = $request->input('inheritance');
 
-        // それぞれの質問に対する回答から漢字を提案するロジック
-        $kanji_suggestions = $this->generateKanjiSuggestions($value, $passion, $trial);
+        // 漢字提案ロジック
+        $kanji_suggestions = $this->generateKanjiSuggestions($value, $passion, $inheritance);
 
-        return view('ingo', compact('value', 'passion', 'trial', 'kanji_suggestions'));
+        // ingoビューにデータを渡す
+        return view('ingo', compact('value', 'passion', 'inheritance', 'kanji_suggestions'));
     }
 
-    protected function generateKanjiSuggestions($value, $passion, $trial)
+    protected function generateKanjiSuggestions($value, $passion, $inheritance)
     {
-        // APIキー
         $api_key = env('CHAT_GPT_KEY');
 
-        // パラメータ
         $data = [
             "model" => "gpt-3.5-turbo",
             "messages" => [
                 [
                     "role" => "system",
-                    "content" => "あなたは戒名の院号を作成するための漢字を漢字の意味も考慮して、ユーザーにふさわしい漢字を提案してくれるお坊さんです。以下の回答に基づいて、おすすめの漢字1文字の候補をそれぞれの回答に対して、2つずつ、計6つ提示してくださいまた、その漢字の意味も含めて説明してください。"
+                    "content" => "あなたは院号を作成するための漢字を意味も考慮して、回答の内容をもとにふさわしい1文字の漢字を提案してくれるお坊さんです。以下の回答に対して、最も相応しいと思う漢字をそれぞれ2つずつ、計6つ必ず提示してください。回答方法のルールとしては「提案した漢字」：漢字の意味：なぜその漢字を提案したか：いう構成で記述してください。また、各提案は必ず独立した段落で記述してください"
                 ],
                 [
                     "role" => "user",
-                    "content" => "価値観: {$value}, 情熱: {$passion}, 試練: {$trial}"
+                    "content" => "大切にしている価値観: {$value}, 人生で情熱を注いだこと: {$passion},後世に残したいもの: {$inheritance}"
                 ]
             ]
         ];

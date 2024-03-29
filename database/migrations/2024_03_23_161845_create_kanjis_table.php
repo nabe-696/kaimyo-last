@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('kanjis', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('characters', 6); // 漢字を保存するカラム
+            $table->string('gender'); 
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // ユーザーIDを関連付け
             
             $table->timestamps();

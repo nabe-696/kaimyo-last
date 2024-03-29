@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            戒名：戒名の説明
         </h2>
     </x-slot>
 
@@ -19,26 +19,32 @@
         <div class="flex-grow py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-5">
-                    <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">あなたの人生と価値観に基づいた漢字提案</h1>
+                <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">よく使われる漢字から漢字を選んでクリックしてみよう</h1>
+                <div class="kanji-list flex flex-wrap justify-center gap-4 p-5">    
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center " data-kanji="歌">歌</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center "  data-kanji="書">書</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center "  data-kanji="窓">窓</button>
+                </div>
+                    <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">あなたの人生と価値観に基づいた漢字提案をAIとともに</h1>
                     <form method="POST" action="{{ url('/kaimyo') }}" class="mb-4">
                         @csrf
                         <div class="mb-4">
-                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="value">
-                                人生で最も大切にしていた価値観は何ですか？
+                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="influentialPerson">
+                            あなたの人生で「最も影響を受けた人物」は誰ですか？その人から何を学びましたか？
                             </label>
-                            <textarea id="value" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline" name="value">{{ old('value') }}</textarea>
+                            <textarea id="influentialPerson" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline" name="influentialPerson">{{ old('influentialPerson') }}</textarea>
                         </div>
                         <div class="mb-4">
-                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="passion">
-                                趣味や特技、生涯を通じて情熱を注いだことは何ですか？
+                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="proudestMoment">
+                            あなたが人生で「最も誇りに思う瞬間」はいつですか？
                             </label>
-                            <textarea id="passion" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline" name="passion">{{ old('passion') }}</textarea>
+                            <textarea id="proudestMoment" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline" name="proudestMoment">{{ old('proudestMoment') }}</textarea>
                         </div>
                         <div class="mb-4">
-                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="trial">
-                                人生で直面した最大の試練は何でしたか？
+                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="relianceDuringHardship">
+                            困難な時期を乗り越えるために「あなたが頼ったもの」は何ですか？
                             </label>
-                            <textarea id="trial" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline" name="trial">{{ old('trial') }}</textarea>
+                            <textarea id="relianceDuringHardship" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline" name="relianceDuringHardship">{{ old('relianceDuringHardship') }}</textarea>
                         </div>
                         <div class="flex items-center justify-between">
                             <button class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
@@ -103,4 +109,43 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.kanji-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const kanji = this.getAttribute('data-kanji');
+            const kaimyoKanji1Input = document.getElementById('kaimyoKanji1');
+            const kaimyoKanji2Input = document.getElementById('kaimyoKanji2');
+
+            if (!kaimyoKanji1Input.value) {
+                kaimyoKanji1Input.value = kanji;
+            } else if (!kaimyoKanji2Input.value) {
+                kaimyoKanji2Input.value = kanji;
+            } else {
+                // 両方埋まっている場合は、戒名漢字1を更新して、戒名漢字2をクリアします。
+                kaimyoKanji1Input.value = kanji;
+                kaimyoKanji2Input.value = '';
+            }
+        });
+    });
+
+    // フォーム送信時の処理を設定
+    const kaimyoKanjiForm = document.getElementById('kaimyoKanjiForm');
+    kaimyoKanjiForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const kaimyoKanji1 = document.getElementById('kaimyoKanji1').value;
+        const kaimyoKanji2 = document.getElementById('kaimyoKanji2').value;
+
+        if (kaimyoKanji1.length === 1 && kaimyoKanji2.length === 1) {
+            localStorage.setItem('kaimyo_kanji1', kaimyoKanji1);
+            localStorage.setItem('kaimyo_kanji2', kaimyoKanji2);
+            const basePath = (window.location.hostname === "localhost") ? '/dashboard/final' : '/sotsugyou/dashboard/final';
+            window.location.href = basePath;
+        } else {
+            alert('漢字は1文字ずつ入力してください。');
+        }
+    });
+});
+</script>
 

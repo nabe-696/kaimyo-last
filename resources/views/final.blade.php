@@ -29,20 +29,30 @@
                         <input type="hidden" name="kanjis[]" id="kanjiData4">
                         <input type="hidden" name="kanjis[]" id="kanjiData5">
                         <input type="hidden" name="kanjis[]" id="kanjiData6">
-                        <!-- 送信ボタンを追加 -->
+
+                        <!-- 名前の隠しフィールド -->
+                        <input type="hidden" name="name" id="nameInput">
+
+                        <input type="hidden" name="gender" id="genderInput">
+                        <h1>漢字を入れ替えて、自分の好みの組み合わせに調節しよう</h1>
+                        <!-- 送信ボタン -->
                         <button type="submit" class="btn btn-primary mt-4">漢字データを保存</button>
                     </form>
                      
                       <div id="finalKanjiDisplay" class="mt-8">
-                          <div class="kanji-box">□</div>
-                          <div class="kanji-box">□</div>
-                          <div class="kanji-box">□</div>
-                          <div class="kanji-box">□</div>
-                          <div class="kanji-box">□</div>
-                          <div class="kanji-box">□</div>
+                        院号
+                          <div class="kanji-box" draggable="true">□</div>
+                          <div class="kanji-box" draggable="true">□</div>
+                        道号
+                          <div class="kanji-box" draggable="true">□</div>
+                          <div class="kanji-box" draggable="true">□</div>
+                        戒名
+                          <div class="kanji-box" draggable="true">□</div>
+                          <div class="kanji-box" draggable="true">□</div>
                       </div>
 
-                        <!-- Dashboard's content goes here -->
+                      <div id="userNameDisplay" class="mt-8 text-lg font-semibold">名前: <span id="userName">未設定</span></div>
+
                     </div>
                 </div>
             </div>
@@ -51,7 +61,7 @@
     </div>
 </x-app-layout>
 
-<!-- 漢字データを送信するためのフォーム -->
+
 
 
 
@@ -68,7 +78,7 @@
 }
 </style>
 
-<!-- final.blade.php -->
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // ローカルストレージから各漢字データを取得
@@ -92,10 +102,101 @@ document.addEventListener('DOMContentLoaded', function() {
     kanjiInputs.forEach((input, index) => {
         input.value = kanjis[index];
     });
+
+        // ローカルストレージから名前を取得して表示
+    const userName = localStorage.getItem('kaimyo_name') || '';
+    document.getElementById('nameInput').value = userName;
+
+    const gender = localStorage.getItem('kaimyo_gender') || '';
+    document.getElementById('genderInput').value = gender;
+
+    console.log(gender);
+
+    // ユーザー名を表示用の要素にも設定
+    // ここを修正または追加
+    if (userName !== '') {
+        document.getElementById('userNameDisplay').style.display = 'block';
+        document.getElementById('userName').textContent = userName;
+    } else {
+        document.getElementById('userNameDisplay').style.display = 'none';
+    }
+
+
+
+    let draggedItem = null;
+
+    // ドラッグされたアイテムを参照する
+    document.querySelectorAll('.kanji-box').forEach(item => {
+        item.addEventListener('dragstart', function(e) {
+            draggedItem = this;
+        });
+
+        item.addEventListener('dragover', function(e) {
+            e.preventDefault(); // デフォルトの挙動を防ぐ
+        });
+
+        item.addEventListener('drop', function(e) {
+            e.preventDefault(); // デフォルトの挙動を防ぐ
+            if (draggedItem !== this) {
+                // ここでアイテムの内容を交換する
+                let temp = this.innerText;
+                this.innerText = draggedItem.innerText;
+                draggedItem.innerText = temp;
+                
+                const kanjiInputs = document.querySelectorAll('input[name="kanjis[]"]');
+                kanjiInputs.forEach((input, index) => {
+                input.value = kanjiBoxes[index].innerText;
+        });
+            }
+        });
+    });
 });
 
+document.getElementById('kanjiSaveForm').addEventListener('submit', function(event) {
+    // デフォルトのフォーム送信を止める
+    event.preventDefault();
+
+    // FormDataオブジェクトを使ってフォームのデータを取得
+    const formData = new FormData(this);
+
+    const userName = document.getElementById('nameInput').value;
+    if (!userName) {
+        alert('名前が入っていません。トップページに戻って名前をいれましょう');
+        return; // これでフォームの送信を中断する
+    }
+
+    // fetchを使って非同期でフォームのデータを送信
+    fetch(this.action, {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => {
+        if(response.ok) {
+            // 送信成功したらローカルストレージをクリア
+            localStorage.removeItem('ingo_kanji1');
+            localStorage.removeItem('ingo_kanji2');
+            localStorage.removeItem('dougo_kanji1');
+            localStorage.removeItem('dougo_kanji2');
+            localStorage.removeItem('kaimyo_kanji1');
+            localStorage.removeItem('kaimyo_kanji2');
+            localStorage.removeItem('kaimyo_name');
+            localStorage.removeItem('kaimyo_gender');
+
+            // 送信成功のメッセージ表示やページ遷移など
+            alert('データが保存されました！');
+        } else {
+            // サーバーからエラーレスポンスが返ってきた場合の処理
+            alert('データの保存に失敗しました。');
+        }
+    })
+    .catch(error => {
+        // ネットワークエラーなど、送信そのものに失敗した場合の処理
+        console.error('送信に失敗しました:', error);
+    });
+});
 
 </script>
+
 
  
 

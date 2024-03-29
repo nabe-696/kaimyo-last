@@ -69,6 +69,26 @@ Route::get('/my-kanjis', [KanjiController::class, 'index'])->name('my-kanjis');
 //view-kaimyoにひょうじするためのもん
 Route::get('/view-kaimyo/{kanji}', [KanjiController::class, 'show'])->name('view-kaimyo');
 
+ // `$kanji`変数に空のデータを渡すか、あるいは渡さない
+// Route::get('/view-kaimyo', function() {
+   
+//     return view('view-kaimyo', ['kanji' => null]);
+// })->name('view-kaimyo');
+
+
+//mypegeに表示
+Route::get('/mypage', [KanjiController::class, 'showMyPage'])->middleware(['auth'])->name('mypage');
+
+//編集ページへgo
+Route::get('/kanjis/{kanji}/edit', [KanjiController::class, 'edit'])->name('kanji.edit');
+
+
+Route::put('/kanjis/{kanji}', [KanjiController::class, 'update'])->name('kanji.update');
+//削除ページへgo
+Route::delete('/kanjis/{kanji}', [KanjiController::class, 'destroy'])->name('kanji.destroy');
+
+
+
 
 
 require __DIR__.'/auth.php';

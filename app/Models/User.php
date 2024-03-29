@@ -44,4 +44,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function kanjis()
+    {
+        return $this->hasMany(Kanji::class);
+    }
+
 }

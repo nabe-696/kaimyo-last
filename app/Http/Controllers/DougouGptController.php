@@ -17,24 +17,24 @@ class DougouGptController extends Controller
     {
         // バリデーション
         $request->validate([
-            'value' => 'required',
-            'passion' => 'required',
-            'trial' => 'required',
+            'change' => 'required',
+            'selfhelp' => 'required',
+            'trip' => 'required',
         ]);
 
         // 入力値の取得
-        $value = $request->input('value');
-        $passion = $request->input('passion');
-        $trial = $request->input('trial');
+        $change = $request->input('change');
+        $selfhelp = $request->input('selfhelp');
+        $trip = $request->input('trip');
 
         // 漢字提案ロジック
-        $kanji_suggestions = $this->generateKanjiSuggestions($value, $passion, $trial);
+        $kanji_suggestions = $this->generateKanjiSuggestions($change, $selfhelp, $trip);
 
         // dougoビューにデータを渡す
-        return view('dougo', compact('value', 'passion', 'trial', 'kanji_suggestions'));
+        return view('dougo', compact('change', 'selfhelp', 'trip', 'kanji_suggestions'));
     }
 
-    protected function generateKanjiSuggestions($value, $passion, $trial)
+    protected function generateKanjiSuggestions($change, $selfhelp, $trip)
     {
         $api_key = env('CHAT_GPT_KEY');
 
@@ -43,11 +43,11 @@ class DougouGptController extends Controller
             "messages" => [
                 [
                     "role" => "system",
-                    "content" => "あなたは戒名の道号を作成するための漢字を漢字の意味も考慮して、ユーザーにふさわしい漢字を提案してくれるお坊さんです。以下の回答に基づいて、おすすめの漢字1文字の候補をそれぞれの回答に対して、2つずつ、計6つ提示してくださいまた、その漢字の意味も含めて説明してください。"
+                    "content" => "あなたは戒名の道号を作成するための漢字を意味も考慮して、ユーザーにふさわしい漢字を提案してくれるお坊さんです。以下の回答に基づいて、おすすめの漢字1文字の候補をそれぞれの回答に対して、2つずつ、計6つ提示してください。また、その漢字の意味も含めて説明してください。"
                 ],
                 [
                     "role" => "user",
-                    "content" => "価値観: {$value}, 情熱: {$passion}, 試練: {$trial}"
+                    "content" => "自分自身の変化: {$change}, 習慣や考え方: {$selfhelp},  人生の目標: {$trip}"
                 ]
             ]
         ];

@@ -9,7 +9,7 @@ class KaimyoGptController extends Controller
 {
     public function index(Request $request)
     {
-        // 道号用のビューを返す
+        
         return view('kaimyo');
     }
 
@@ -17,24 +17,24 @@ class KaimyoGptController extends Controller
     {
         // バリデーション
         $request->validate([
-            'value' => 'required',
-            'passion' => 'required',
-            'trial' => 'required',
+            'influentialPerson' => 'required',
+            'proudestMoment' => 'required',
+            'relianceDuringHardship' => 'required',
         ]);
 
         // 入力値の取得
-        $value = $request->input('value');
-        $passion = $request->input('passion');
-        $trial = $request->input('trial');
+        $influentialPerson = $request->input('influentialPerson');
+        $proudestMoment = $request->input('proudestMoment');
+        $relianceDuringHardship = $request->input('relianceDuringHardship');
 
         // 漢字提案ロジック
-        $kanji_suggestions = $this->generateKanjiSuggestions($value, $passion, $trial);
+        $kanji_suggestions = $this->generateKanjiSuggestions($influentialPerson, $proudestMoment, $relianceDuringHardship);
 
         // kaimyoビューにデータを渡す
-        return view('kaimyo', compact('value', 'passion', 'trial', 'kanji_suggestions'));
+        return view('kaimyo', compact('influentialPerson', 'proudestMoment', 'relianceDuringHardship', 'kanji_suggestions'));
     }
 
-    protected function generateKanjiSuggestions($value, $passion, $trial)
+    protected function generateKanjiSuggestions($influentialPerson, $proudestMoment, $relianceDuringHardship)
     {
         $api_key = env('CHAT_GPT_KEY');
 
@@ -43,11 +43,11 @@ class KaimyoGptController extends Controller
             "messages" => [
                 [
                     "role" => "system",
-                    "content" => "あなたは戒名の道号を作成するための漢字を漢字の意味も考慮して、ユーザーにふさわしい漢字を提案してくれるお坊さんです。以下の回答に基づいて、おすすめの漢字1文字の候補をそれぞれの回答に対して、2つずつ、計6つ提示してくださいまた、その漢字の意味も含めて説明してください。"
+                    "content" => "あなたは戒名を作成するための漢字を意味も考慮して、ユーザーにふさわしい漢字を提案してくれるお坊さんです。以下の回答に基づいて、おすすめの漢字1文字の候補をそれぞれの回答に対して、2つずつ、計6つ提示してくださいまた、その漢字の意味も含めて説明してください。"
                 ],
                 [
                     "role" => "user",
-                    "content" => "価値観: {$value}, 情熱: {$passion}, 試練: {$trial}"
+                    "content" => "影響を受けた人物: {$influentialPerson}, 誇りに思う瞬間: {$proudestMoment}, 困難時の頼りにしたもの: {$relianceDuringHardship}"
                 ]
             ]
         ];

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+           院号ページ
         </h2>
     </x-slot>
 
@@ -18,27 +18,46 @@
         <!-- Main Content -->
         <div class="flex-grow py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-5">
+                
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-5" >
+
+                <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">よく使われる漢字から漢字を選んでクリックしてみよう</h1>
+                <div class="kanji-list flex flex-wrap justify-center gap-4 p-5">
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center " data-kanji="安"  >安 
+                    </button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center"  data-kanji="英">英</button>
+                    <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="恵">恵</button>
+                    <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="温">温</button>
+                    <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="賢">賢</button>
+                    <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="志">志</button>
+                    <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="義">義</button>
+                    <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="秀">秀</button>
+                    <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="純">純</button>
+
+
+
+                </div>
+
                     <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">あなたの人生と価値観に基づいた漢字提案</h1>
                     <form method="POST" action="{{ url('/ingo') }}" class="mb-4">
                         @csrf
                         <div class="mb-4">
                             <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="value">
-                                人生で最も大切にしていた価値観は何ですか？
+                                人生で最も大切にしていた「価値観」は何ですか？
                             </label>
                             <textarea id="value" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline" name="value">{{ old('value') }}</textarea>
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="passion">
-                                趣味や特技、生涯を通じて情熱を注いだことは何ですか？
+                                趣味や特技、生涯を通じて「情熱」を注いだことは何ですか？
                             </label>
                             <textarea id="passion" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline" name="passion">{{ old('passion') }}</textarea>
                         </div>
                         <div class="mb-4">
-                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="trial">
-                                人生で直面した最大の試練は何でしたか？
+                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="inheritance">
+                            あなたが築き上げた「遺産」で最も重要だと思うものは何ですか？また、将来の世代に対して残したいと思うメッセージはありますか？
                             </label>
-                            <textarea id="trial" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline" name="trial">{{ old('trial') }}</textarea>
+                            <textarea id="inheritance" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline" name="inheritance">{{ old('inheritance') }}</textarea>
                         </div>
                         <div class="flex items-center justify-between">
                             <button class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
@@ -99,9 +118,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const kanji1 = document.getElementById('kanji1').value;
         const kanji2 = document.getElementById('kanji2').value;
 
-        // 入力値の検証
+        
         if (kanji1.length === 1 && kanji2.length === 1) {
-            // ローカルストレージに漢字を保存
+         
             localStorage.setItem('ingo_kanji1', kanji1);
             localStorage.setItem('ingo_kanji2', kanji2);
 
@@ -109,9 +128,35 @@ document.addEventListener('DOMContentLoaded', function() {
             const basePath = (window.location.hostname === "localhost") ? '/dashboard/final' : '/sotsugyou/dashboard/final';
             window.location.href = basePath;
         } else {
-            // 不正な入力の場合は警告
+   
             alert('漢字は1文字ずつ入力してください。');
         }
+    });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.kanji-item').forEach(item => {
+
+
+        // 漢字アイテムがクリックされたときの処理
+        item.addEventListener('click', function() {
+            const kanji = this.getAttribute('data-kanji');
+            const kanji1Input = document.getElementById('kanji1');
+            const kanji2Input = document.getElementById('kanji2');
+            
+            // 漢字1が空、または既に入力されている場合は漢字2へ入力
+            if (!kanji1Input.value) {
+                kanji1Input.value = kanji;
+            } else if (!kanji2Input.value) {
+                kanji2Input.value = kanji;
+            } else {
+                // 両方埋まっている場合は漢字1を更新し、漢字2をクリア
+                kanji1Input.value = kanji;
+                kanji2Input.value = '';
+            }
+        });
     });
 });
 </script>

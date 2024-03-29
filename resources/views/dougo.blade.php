@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            道号ページ：道号の説明
         </h2>
     </x-slot>
 
@@ -19,26 +19,36 @@
         <div class="flex-grow py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-5">
+                <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">よく使われる漢字から漢字を選んでクリックしてみよう</h1>
+                <div class="kanji-list flex flex-wrap justify-center gap-4 p-5">
+                    <!-- 既存のボタン -->
+     
+                    <!-- 追加する漢字のボタン -->
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center " data-kanji="歌">歌</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center "  data-kanji="書">書</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center "  data-kanji="窓">窓</button>
+                    <!-- 他の漢字も同様に追加 -->
+                </div>
                     <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">あなたの人生と価値観に基づいた漢字提案</h1>
                     <form method="POST" action="{{ url('/dougo') }}" class="mb-4">
                         @csrf
                         <div class="mb-4">
-                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="value">
-                                人生で最も大切にしていた価値観は何ですか？
+                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="change">
+                            あなたが人生で経験した「変化」で最も影響力のあったものは何ですか？
                             </label>
-                            <textarea id="value" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline" name="value">{{ old('value') }}</textarea>
+                            <textarea id="change" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline" name="change">{{ old('change') }}</textarea>
                         </div>
                         <div class="mb-4">
-                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="passion">
-                                趣味や特技、生涯を通じて情熱を注いだことは何ですか？
+                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="selfhelp">
+                            「自己啓発」においてあなたを最も助けた習慣や考え方は何ですか？
                             </label>
-                            <textarea id="passion" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline" name="passion">{{ old('passion') }}</textarea>
+                            <textarea id="effet" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline" name="selfhelp">{{ old('selfhelp') }}</textarea>
                         </div>
                         <div class="mb-4">
-                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="trial">
-                                人生で直面した最大の試練は何でしたか？
+                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="trip">
+                            あなたが「人生の旅」で目指している究極の目標は何ですか？
                             </label>
-                            <textarea id="trial" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline" name="trial">{{ old('trial') }}</textarea>
+                            <textarea id="trip" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline" name="trip">{{ old('trip') }}</textarea>
                         </div>
                         <div class="flex items-center justify-between">
                             <button class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
@@ -103,6 +113,28 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.kanji-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const kanji = this.getAttribute('data-kanji');
+            const dougoKanji1Input = document.getElementById('dougoKanji1'); // 変数名を修正
+            const dougoKanji2Input = document.getElementById('dougoKanji2'); // 変数名を修正
 
+            // 漢字1が空、または既に入力されている場合は漢字2へ入力
+            if (!dougoKanji1Input.value) {
+                dougoKanji1Input.value = kanji;
+            } else if (!dougoKanji2Input.value) {
+                dougoKanji2Input.value = kanji; // 正しい変数名に修正
+            } else {
+                // 両方埋まっている場合は漢字1を更新し、漢字2をクリア
+                dougoKanji1Input.value = kanji;
+                dougoKanji2Input.value = '';
+            }
+        });
+    });
+});
+
+</script>
 
 
