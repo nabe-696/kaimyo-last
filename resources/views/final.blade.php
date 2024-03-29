@@ -170,10 +170,8 @@ document.getElementById('kanjiSaveForm').addEventListener('submit', function(eve
         method: 'POST',
         body: formData,
     })
-
-    .then(response => response.json())
-    .then(data => {
-        if(data.redirectUrl) {
+    .then(response => {
+        if(response.ok) {
             // 送信成功したらローカルストレージをクリア
             localStorage.removeItem('ingo_kanji1');
             localStorage.removeItem('ingo_kanji2');
@@ -183,7 +181,7 @@ document.getElementById('kanjiSaveForm').addEventListener('submit', function(eve
             localStorage.removeItem('kaimyo_kanji2');
             localStorage.removeItem('kaimyo_name');
             localStorage.removeItem('kaimyo_gender');
-            window.location.href = data.redirectUrl;
+
             // 送信成功のメッセージ表示やページ遷移など
             alert('データが保存されました！');
         } else {
@@ -191,19 +189,11 @@ document.getElementById('kanjiSaveForm').addEventListener('submit', function(eve
             alert('データの保存に失敗しました。');
         }
     })
-        .catch(error => {
+    .catch(error => {
         // ネットワークエラーなど、送信そのものに失敗した場合の処理
         console.error('送信に失敗しました:', error);
     });
-    
-  
-
-
-
-
 });
-
-
 
 </script>
 

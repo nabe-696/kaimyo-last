@@ -17,26 +17,26 @@
 
         <!-- Main Content -->
         <div class="flex-grow py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-wrap">
                 
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-5" >
 
-                <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">よく使われる漢字から漢字を選んでクリックしてみよう</h1>
-                <div class="kanji-list flex flex-wrap justify-center gap-4 p-5">
-                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center " data-kanji="安"  >安 
-                    </button>
-                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center"  data-kanji="英">英</button>
-                    <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="恵">恵</button>
-                    <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="温">温</button>
-                    <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="賢">賢</button>
-                    <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="志">志</button>
-                    <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="義">義</button>
-                    <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="秀">秀</button>
-                    <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="純">純</button>
+                    <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">よく使われる漢字から漢字を選んでクリックしてみよう</h1>
+                    <div class="kanji-list justify-center gap-4 p-5">
+                        <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center " data-kanji="安"  >安 
+                        </button>
+                        <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center"  data-kanji="英">英</button>
+                        <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="恵">恵</button>
+                        <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="温">温</button>
+                        <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="賢">賢</button>
+                        <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="志">志</button>
+                        <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="義">義</button>
+                        <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="秀">秀</button>
+                        <button  class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="純">純</button>
 
 
 
-                </div>
+                    </div>
 
                     <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">あなたの人生と価値観に基づいた漢字提案</h1>
                     <form method="POST" action="{{ url('/ingo') }}" class="mb-4">
@@ -162,3 +162,11 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 
+<style>
+  .kanji-list {
+    display: flex; /* Flexboxを有効にする */
+    flex-wrap: wrap; /* 要素が境界を超えたら折り返す */
+    justify-content: center; /* 中央寄せ */
+    gap: 1rem; /* 要素間の隙間 */
+  }
+</style>
