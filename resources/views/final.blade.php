@@ -152,48 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-document.getElementById('kanjiSaveForm').addEventListener('submit', function(event) {
-    // デフォルトのフォーム送信を止める
-    event.preventDefault();
 
-    // FormDataオブジェクトを使ってフォームのデータを取得
-    const formData = new FormData(this);
-
-    const userName = document.getElementById('nameInput').value;
-    if (!userName) {
-        alert('名前が入っていません。トップページに戻って名前をいれましょう');
-        return; // これでフォームの送信を中断する
-    }
-
-    // fetchを使って非同期でフォームのデータを送信
-    fetch(this.action, {
-        method: 'POST',
-        body: formData,
-    })
-    .then(response => {
-        if(response.ok) {
-            // 送信成功したらローカルストレージをクリア
-            localStorage.removeItem('ingo_kanji1');
-            localStorage.removeItem('ingo_kanji2');
-            localStorage.removeItem('dougo_kanji1');
-            localStorage.removeItem('dougo_kanji2');
-            localStorage.removeItem('kaimyo_kanji1');
-            localStorage.removeItem('kaimyo_kanji2');
-            localStorage.removeItem('kaimyo_name');
-            localStorage.removeItem('kaimyo_gender');
-
-            // 送信成功のメッセージ表示やページ遷移など
-            alert('データが保存されました！');
-        } else {
-            // サーバーからエラーレスポンスが返ってきた場合の処理
-            alert('データの保存に失敗しました。');
-        }
-    })
-    .catch(error => {
-        // ネットワークエラーなど、送信そのものに失敗した場合の処理
-        console.error('送信に失敗しました:', error);
-    });
-});
 
 </script>
 
