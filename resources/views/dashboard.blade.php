@@ -46,7 +46,8 @@ function saveNameAndRedirect() {
     if (name) {
         localStorage.setItem('kaimyo_name', name);
         localStorage.setItem('kaimyo_gender', gender);
-        window.location.href = '/ingo'; // ここはfinal.blade.phpにアクセスするためのルート
+        const basePath = (window.location.hostname === "localhost") ? '/dashboard/ingo' : '/sotsugyou/dashboard/ingo';
+        window.location.href = basePath; // パスを動的に設定
     } else {
         alert('名前を入力してください！');
     }
