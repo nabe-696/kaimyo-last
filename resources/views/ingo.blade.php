@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('ingo_kanji2', kanji2);
 
             // final.blade.phpにリダイレクト
-            const basePath = (window.location.hostname === "localhost") ? '/dashboard/final' : '/sotsugyou/dashboard/final';
+            const basePath = (window.location.hostname === "localhost") ? '/dashboard/dougo' : '/sotsugyou/dashboard/dougo';
             window.location.href = basePath;
         } else {
    

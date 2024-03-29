@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kanji; 
 use Auth;
+use Illuminate\Support\Facades\Log;
+
 
 class KanjiController extends Controller
 {
     public function store(Request $request)
     {
+
+        Log::info('Store method start.');
         $user = Auth::user(); // 現在のユーザーを取得
 
         $kanji = new Kanji();
@@ -18,8 +22,12 @@ class KanjiController extends Controller
         $kanji->gender = $request->input('gender');
         $kanji->user_id = $user->id; // ユーザーIDをセット
         $kanji->save();
+
+        Log::info('Redirecting to view-kaimyo with kanji ID: '.$kanji->id);
     
-        return redirect()->route('view-kaimyo', ['kanji' => $kanji->id]);
+        return response()->json([
+            'redirectUrl' => route('view-kaimyo', ['kanji' => $kanji->id])
+        ]);
     }
 
     public function index()
