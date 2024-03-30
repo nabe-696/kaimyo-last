@@ -7,18 +7,22 @@
 
     <div class="flex">
         <!-- Sidebar -->
-        <div class="flex flex-col w-1/6 bg-orange-500 h-screen p-6 space-y-6">
-            <a href="{{ route('dashboard') }}" class="text-white text-lg font-medium hover:bg-orange-600 p-3 rounded">トップページ</a>
-            <a href="{{ route('ingo') }}" class="text-white text-lg font-medium hover:bg-orange-600 p-3 rounded">院号</a>
-            <a href="{{ route('dougo') }}" class="text-white text-lg font-medium hover:bg-orange-600 p-3 rounded">道号</a>
-            <a href="{{ route('kaimyo') }}" class="text-white text-lg font-medium hover:bg-orange-600 p-3 rounded">戒名</a>
-            <a href="{{ route('final') }}" class="text-white text-lg font-medium hover:bg-orange-600 p-3 rounded">最終決定</a>
+        <div class="flex flex-col w-1/6 bg-purple-500 h-screen p-6 space-y-6">
+            <a href="{{ route('dashboard') }}" class="text-white text-lg font-medium hover:bg-purple-600 p-3 rounded">トップページ</a>
+            <a href="{{ route('ingo') }}" class="text-white text-lg font-medium hover:bg-purple-600 p-3 rounded">院号</a>
+            <a href="{{ route('dougo') }}" class="text-white text-lg font-medium hover:bg-purple-600 p-3 rounded">道号</a>
+            <a href="{{ route('kaimyo') }}" class="text-white text-lg font-medium hover:bg-purple-600 p-3 rounded">戒名</a>
+            <a href="{{ route('final') }}" class="text-white text-lg font-medium hover:bg-purple-600 p-3 rounded">最終決定</a>
         </div>
 
         <!-- Main Content -->
         <div class="flex-grow py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-wrap">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-5">
+
+                <p class="text-gray-800 dark:text-gray-300 text-lg leading-relaxed mb-4">
+                    このページでは戒名に使う漢字２文字を選んでもらいます。よく使われる漢字から気に入ったものをクリックしていただき、「漢字を保存して次へ」ボタンを押していただくか、質問に答えていただいて、AIが提案した漢字を道号戒名漢字１：、戒名漢字２：の欄に記入し、漢字を保存して次へボタンを押してください。
+                </p>
                 <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">よく使われる漢字から漢字を選んでクリックしてみよう</h1>
                 <div class="kanji-list justify-center gap-4 p-5">    
                     <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center " data-kanji="浄">浄</button>

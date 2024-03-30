@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('aaaaa') }}
+            {{ __('マイページ') }}
         </h2>
     </x-slot>
 
     <div class="flex">
         <!-- Sidebar -->
-        <div class="flex flex-col w-1/6 bg-orange-500 h-screen p-6 space-y-6">
-            <a href="{{ route('mypage') }}" class="text-white text-lg font-medium hover:bg-orange-600 p-3 rounded">戒名一覧</a>
+        <div class="flex flex-col w-1/6 bg-purple-500 h-screen p-6 space-y-6">
+            <a href="{{ route('mypage') }}" class="text-white text-lg font-medium hover:bg-purple-600 p-3 rounded">戒名一覧</a>
 
         </div>
 
