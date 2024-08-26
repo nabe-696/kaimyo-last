@@ -8,7 +8,7 @@
     <div class="flex">
         <!-- Sidebar -->
         <div class="flex flex-col w-1/6 bg-purple-500 h-screen p-6 space-y-6">
-            <a href="{{ route('dashboard') }}" class="text-white text-lg font-medium hover:bg-purple-600 p-3 rounded">トップページ</a>
+            <a href="{{ route('dashboard') }}" class="text-white text-lg font-medium bg-purple-600 hover:bg-purple-600 p-3 rounded">トップページ</a>
             <a href="{{ route('ingo') }}" class="text-white text-lg font-medium hover:bg-purple-600 p-3 rounded">院号</a>
             <a href="{{ route('dougo') }}" class="text-white text-lg font-medium hover:bg-purple-600 p-3 rounded">道号</a>
             <a href="{{ route('kaimyo') }}" class="text-white text-lg font-medium hover:bg-purple-600 p-3 rounded">戒名</a>

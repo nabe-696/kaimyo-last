@@ -12,7 +12,7 @@
             <a href="{{ route('ingo') }}" class="text-white text-lg font-medium hover:bg-purple-600 p-3 rounded">院号</a>
             <a href="{{ route('dougo') }}" class="text-white text-lg font-medium hover:bg-purple-600 p-3 rounded">道号</a>
             <a href="{{ route('kaimyo') }}" class="text-white text-lg font-medium hover:bg-purple-600 p-3 rounded">戒名</a>
-            <a href="{{ route('final') }}" class="text-white text-lg font-medium hover:bg-purple-600 p-3 rounded">最終決定</a>
+            <a href="{{ route('final') }}" class="text-white text-lg font-medium bg-purple-600 hover:bg-purple-600 p-3 rounded">最終決定</a>
         </div>
 
         <!-- Main Content -->
@@ -40,7 +40,7 @@
                     このページでは、漢字をドラッグアンドドロップでお好みの組み合わせにした後、漢字データを保存を押してください
                 </p>
                         <!-- 送信ボタン -->
-                        <button type="submit" class="btn btn-primary mt-4">漢字データを保存</button>
+                        <button type="submit" class="btn btn-primary mt-4 save-kanji-btn">漢字データを保存</button>
                     </form>
                      
                       <div id="finalKanjiDisplay" class="mt-8">
@@ -81,6 +81,19 @@
     border: 1px solid #000;
 }
 
+.save-kanji-btn {
+    background-color: #007BFF; /* 青色 */
+    color: white; /* 文字は白色 */
+    border: none; /* 枠線なし */
+    padding: 10px 20px; /* パディング */
+    border-radius: 5px; /* 角を丸く */
+    cursor: pointer; /* カーソルを指マークに */
+    transition: background-color 0.3s; /* 背景色の変化をなめらかに */
+}
+
+.save-kanji-btn:hover {
+    background-color: #0056b3; /* ホバー時は少し濃い青色 */
+}
 
 </style>
 

@@ -22,6 +22,9 @@
             border-radius: 10px;
         }
         .kanji-display {
+            visibility: hidden; /* 最初は見えないように */
+            opacity: 0; /* 最初は完全に透明 */
+            transition: visibility 0s, opacity 3s linear; /* visibilityはすぐに変化させ、opacityは3秒かけて変化させる */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -36,6 +39,10 @@
             height: 600px; 
             /* margin: auto; */
                 }
+        .kanji-display.visible {
+            visibility: visible; /* 見えるようにする */
+            opacity: 1; /* 完全に不透明にする */
+        }
         .kanji-box {
             margin-top: 20px;
             font-size: 2.3rem;
@@ -79,10 +86,58 @@
         .kanji-box.empty {
             display: none; 
 }
+        .cherry-blossom-container {
+        position: relative;
+        height: 100vh; /* コンテナの高さ */
+        width: 100%; /* コンテナの横幅 */
+        overflow: hidden; /* コンテナからはみ出した要素を隠す */
+        }
+
+        /* 桜の花びらのスタイル */
+        .petal {
+        position: absolute;
+        background-color: #ffc0cb; /* 花びらの色 */
+        border-radius: 150% 0 150% 0;
+        animation: animate-petal 20s linear;
+        }
+
+        .petal::after {
+        content: "";
+        position: absolute;
+        top: -14%;
+        left: -10%;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: #ffc0cb;
+        border-radius: 150% 0 150% 0;
+        transform: rotate(15deg);
+        }
+
+        /* 花びらが降るアニメーション */
+        @keyframes animate-petal {
+        0% {
+            top: 0;
+            opacity: 0;
+            transform: rotate(0deg);
+        }
+        10% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+            top: 100vh;
+            transform: rotate(3000deg);
+        }
+        }
     </style>
 </head>
 <body>
     <div class="container">
+    <div class="cherry-blossom-container">
 
     <a href="{{ route('mypage') }}" class="btn btn-primary">マイページへ戻る</a>
 
@@ -114,6 +169,7 @@
                 <div>戒名が設定されていません。</div>
             @endif
     </div>
+    </div>
 </body>
 </html>
 <script>
@@ -127,5 +183,36 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
     // 背景画像の設定
     document.querySelector('.kanji-display').style.backgroundImage = 'url(' + imagePath + ')';
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  // コンテナを指定
+  const section = document.querySelector('.cherry-blossom-container');
+
+  // 花びらを生成する関数
+  const createPetal = () => {
+    const petalEl = document.createElement('span');
+    petalEl.className = 'petal';
+    const minSize = 10;
+    const maxSize = 15;
+    const size = Math.random() * (maxSize + 1 - minSize) + minSize;
+    petalEl.style.width = `${size}px`;
+    petalEl.style.height = `${size}px`;
+    petalEl.style.left = Math.random() * innerWidth + 'px';
+    section.appendChild(petalEl);
+
+    // 一定時間が経てば花びらを消す
+    setTimeout(() => {
+      petalEl.remove();
+    }, 20000);
+  }
+
+  // 花びらを生成する間隔をミリ秒で指定
+  setInterval(createPetal, 600);
+
+      // 戒名を表示する要素を取得する
+      setTimeout(() => {
+        document.querySelector('.kanji-display').classList.add('visible');
+    }, 1000); // 3000ミリ秒で3秒
 });
 </script>

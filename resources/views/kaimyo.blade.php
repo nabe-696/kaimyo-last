@@ -11,7 +11,7 @@
             <a href="{{ route('dashboard') }}" class="text-white text-lg font-medium hover:bg-purple-600 p-3 rounded">トップページ</a>
             <a href="{{ route('ingo') }}" class="text-white text-lg font-medium hover:bg-purple-600 p-3 rounded">院号</a>
             <a href="{{ route('dougo') }}" class="text-white text-lg font-medium hover:bg-purple-600 p-3 rounded">道号</a>
-            <a href="{{ route('kaimyo') }}" class="text-white text-lg font-medium hover:bg-purple-600 p-3 rounded">戒名</a>
+            <a href="{{ route('kaimyo') }}" class="text-white text-lg font-medium bg-purple-600 hover:bg-purple-600 p-3 rounded">戒名</a>
             <a href="{{ route('final') }}" class="text-white text-lg font-medium hover:bg-purple-600 p-3 rounded">最終決定</a>
         </div>
 
@@ -19,24 +19,35 @@
         <div class="flex-grow py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-wrap">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-5">
-
+                <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">説明</h1>
                 <p class="text-gray-800 dark:text-gray-300 text-lg leading-relaxed mb-4">
-                    このページでは戒名に使う漢字２文字を選んでもらいます。よく使われる漢字から気に入ったものをクリックしていただき、「漢字を保存して次へ」ボタンを押していただくか、質問に答えていただいて、AIが提案した漢字を道号戒名漢字１：、戒名漢字２：の欄に記入し、漢字を保存して次へボタンを押してください。
+                    このページでは戒名に使う漢字２文字を選んでもらいます。<br>戒名は、その人の特徴や大切にしていたことを漢字で表現することが多いです。<br>また、"その人の名前"から漢字をとることも多々あります。<br>では、自分で考えた漢字を入力するか、よく使われる漢字から気に入ったものをクリックしていただき、「漢字を保存して次へ」ボタンを押してください。<br>また、気に入った漢字がなければ、質問に答えていただいて、AIが提案した漢字を道号戒名漢字１：、戒名漢字２：の欄に記入し、漢字を保存して次へボタンを押してください。
                 </p>
                 <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">よく使われる漢字から漢字を選んでクリックしてみよう</h1>
                 <div class="kanji-list justify-center gap-4 p-5">    
-                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center " data-kanji="浄">浄</button>
-                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center "  data-kanji="信">信</button>
-                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center "  data-kanji="覚">覚</button>
-                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center "  data-kanji="寿">寿</button>
-                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center "  data-kanji="大">大</button>
-                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center "  data-kanji="妙">妙</button>
-                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center "  data-kanji="行">行</button>
-                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center "  data-kanji="光">光</button>
-                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center "  data-kanji="円">円</button>
-                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center "  data-kanji="福">福</button>
-                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center "  data-kanji="慈">慈</button>
-                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center "  data-kanji="誠">誠</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center " data-kanji="浄" title="浄（じょう）: 清らかで純粋な状態を表します。">浄</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="信" title="信（しん）: 信頼と誠実さを意味します。">信</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="覚" title="覚（かく）: 覚悟と悟り、精神的な目覚めを表します。">覚</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="寿" title="寿（じゅ）: 長寿と幸福を祈る漢字です。">寿</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="大" title="大（だい）: 大きさ、力強さ、重要性を象徴します。">大</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="妙" title="妙（みょう）: 絶妙で神秘的な美しさや深い智慧を表します。">妙</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="行" title="行（ぎょう）: 行動や生き方、実践を意味します。">行</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="光" title="光（こう）: 明るさ、希望、啓発を象徴します。">光</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="円" title="円（えん）: 完全さ、円満な関係や繋がりを意味します。">円</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="福" title="福（ふく）: 幸福と福をもたらすとされます。">福</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="慈" title="慈（じ）: 慈愛深い、思いやりのある心を表します。">慈</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="誠" title="誠（せい）: 誠実さ、真実を意味します。">誠</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="智" title="智（ち）: 知恵と知識、賢明さを象徴します。">智</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="孝" title="孝（こう）: 親への敬愛と尊敬を表します。">孝</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="忠" title="忠（ちゅう）: 忠誠心、誠実さを意味します。">忠</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="仁" title="仁（じん）: 人間愛、慈悲の心を表します。">仁</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="悟" title="悟（ご）: 悟り、真理の理解を意味します。">悟</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="和" title="和（わ）: 調和と平和を象徴します。">和</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="守" title="守（しゅ）: 守ること、保護する力を表します。">守</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="瑞" title="瑞（ずい）: 瑞々しい、吉兆を意味します。">瑞</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="聖" title="聖（せい）: 神聖さ、尊い存在を表します。">聖</button>
+                    <button class="kanji-item bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-12 h-12 flex items-center justify-center" data-kanji="徳" title="徳（とく）: 道徳的な良さや美徳を表します。">徳</button>
+
                 </div>
                     <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">あなたの人生と価値観に基づいた漢字提案をAIとともに</h1>
                     <form method="POST" action="{{ url('/kaimyo') }}" class="mb-4">
@@ -72,7 +83,7 @@
                             <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">おすすめの漢字候補</h2>
                             <ul class="list-disc list-inside space-y-2">
                                 @foreach($kanji_suggestions as $kanji)
-                                    <li class="text-gray-700 dark:text-gray-300">{{ $kanji }}</li>
+                                    <li class="text-gray-700 dark:text-gray-300">{!! nl2br(e($kanji)) !!}</li>
                                 @endforeach
                             </ul>
                         </div>
